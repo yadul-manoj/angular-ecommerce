@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="">Sample Page</a>
+        </div>
+        <div class="navbar-nav"></div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a *ngIf="!userService.isLoggedIn" class="nav-item nav-link" routerLink="login">Login</a>
+                <a *ngIf="userService.isLoggedIn" class="nav-item nav-link" (click)="logout()">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="userService.currentUser" class="nav-item nav-link" routerLink="profile">Welcome {{ userService.currentUser.firstName }}!</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" (click)="status()">Status</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
