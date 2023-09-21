@@ -44,7 +44,7 @@ export class UserService {
 
   getCartQuantity(id: number) {
     let cart: ICart = JSON.parse(sessionStorage.getItem(id + '_cart')!);
-    return cart.totalItems;
+    return cart.products.length;
   }
 
   createUserCart(id: number) {
@@ -76,32 +76,6 @@ export class UserService {
   }
 
   addToCart(id: number, product: IProduct) {
-    //   let currentCart: ICarts = JSON.parse(localStorage.getItem(id + '_cart')!);
-    //   console.log('current cart', currentCart);
-
-    //   // Check if itme exists in cart
-    //   let index = currentCart.products.findIndex(prod => { prod.product.id == product.id; })
-    //   // Item exists
-    //   if (index != -1) {
-    //     console.log('existing item');
-    //     // Set maximum purchasing limit
-    //     if (currentCart.products[index].quantity < 2) {
-    //       currentCart.products[index].quantity += 1;
-    //       currentCart.products[index].total += product.price;
-    //       this.toastr.success('Item added to cart successfully!', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
-    //     } else {
-    //       this.toastr.error('Cannot add item to cart.<br>Maximum quantity is two.',  '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
-    //     } 
-    //   } else {
-    //     console.log('new item');
-    //     currentCart.products.push({ product: product, quantity: 1, total: product.price });
-    //   }
-
-    //   localStorage.setItem(id + '_cart', JSON.stringify(currentCart));
-    //   console.log('current cart', localStorage.getItem(id + '_cart'));
-    // }
-
-
     let currentCart: ICart = JSON.parse(sessionStorage.getItem(id + '_cart')!);
     console.log('current cart', currentCart);
     console.log('prod id', product.id);

@@ -1,11 +1,14 @@
 <div class="container-fluid" style="background-color: #a64253; background-size: cover;">
     <div class="container" *ngIf="cartItems">
         <br>
-        <div class="row ms-1 me-1 pt-2 pb-2 text-center shadow" style="background-color: white; border-radius: 0.5em;">
+        <!-- <div class="row ms-1 me-1 pt-2 pb-2 text-center shadow" style="background-color: white; border-radius: 0.5em;">
             <h1>
                 Shopping Cart
             </h1>
-        </div>
+        </div> -->
+        <h1 class="text-center" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); color: white;">
+            Shopping Cart
+        </h1>
         <hr>
         <div class="row">
             <div *ngIf="cartItems.products.length < 1" class="col-md-12" style="height: 100vh;">

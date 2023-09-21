@@ -38,6 +38,7 @@
                 <a *ngIf="userService.getUserDetails()" class="nav-item nav-link" routerLink="cart"
                     style="cursor: pointer;">
                     Cart
+                    <i class="fa-solid fa-cart-shopping px-1"></i>
                     <span *ngIf="userService.getUserDetails()" class="badge rounded-pill bg-danger">{{
                         userService.getCartQuantity(currentUser.id) }}</span>
                 </a>

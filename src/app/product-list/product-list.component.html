@@ -1,12 +1,16 @@
 <div class="container-fluid bg-gradient" style="background-color: #ea526f;">
     <div class="row">
-        
-        <div *ngIf="productCategories" class="col-md-2 d-md-block d-none" style="background-color: #363537; color: white;">
+
+        <div *ngIf="productCategories" class="col-md-2 d-md-block d-none"
+            style="background-color: #363537; color: white;">
             <!-- <h6 *ngFor="let category of productCategories">{{ category | titlecase }}</h6> -->
-            <button *ngFor="let category of productCategories" type="button" (click)="routeToCategory(category)" class="btn btn-outline-light btn-sm my-1" style="width: 100%;">{{ category | titlecase }}</button>
+            <button *ngFor="let category of productCategories" type="button" (click)="routeToCategory(category)"
+                class="btn btn-outline-light btn-sm my-1" style="width: 100%; border-color: transparent; ">{{ category |
+                titlecase }}</button>
         </div>
         <div class="col-md-10 mx-auto">
-            <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel" style="font-family: Georgia;">
+            <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel"
+                style="font-family: Georgia;">
                 <div class="carousel-inner rounded-3">
                     <div class="carousel-item active">
                         <div class="d-flex justify-content-center align-items-center"
@@ -46,15 +50,31 @@
                         <div class="card mx-auto my-auto shadow p-1 mb-4 bg-body rounded"
                             style="width: 16.5rem; height: 22rem;">
                             <img class="card-img-top" [src]="product.thumbnail" alt="Card image cap"
-                                style="height: 10rem; cursor: pointer;" routerLink="/products/{{ product.id }}" (click)="sendProd(product)">
+                                style="height: 10rem; cursor: pointer;" routerLink="/products/{{ product.id }}"
+                                (click)="sendProd(product)">
                             <div class="card-body">
                                 <!-- <p class="card-title" style="font-size: medium;"><strong>{{ product.title }}</strong></p> -->
                                 <a routerLink="/products/{{ product.id }}" style="text-decoration: none;"
                                     (click)="sendProd(product)">
                                     <!-- <a href="" style="text-decoration: none;" (click)="sendProd(product)"> -->
-                                    <h5 class="card-title">{{ product.title }}</h5>
+                                    <h6 class="card-title"><strong>{{ product.title }}</strong></h6>
                                 </a>
                                 <p class="card-text">Price: {{ product.price | currency:"USD" }}</p>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <i class="fa-solid fa-star"
+                                            [style.visibility]="product.rating >= 1 ? 'visible' : 'hidden'"></i>
+                                        <i class="fa-solid fa-star"
+                                            [style.visibility]="product.rating >= 2 ? 'visible' : 'hidden'"></i>
+                                        <i class="fa-solid fa-star"
+                                            [style.visibility]="product.rating >= 3 ? 'visible' : 'hidden'"></i>
+                                        <i class="fa-solid fa-star"
+                                            [style.visibility]="product.rating >= 4 ? 'visible' : 'hidden'"></i>
+                                        <i class="fa-solid fa-star"
+                                            [style.visibility]="product.rating == 5 ? 'visible' : 'hidden'"></i>
+                                        ({{ product.rating }})
+                                    </div>
+                                </div>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
