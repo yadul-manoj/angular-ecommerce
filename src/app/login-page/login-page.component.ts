@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormControlName, Validators } from '@angular/forms'
+import { Component, OnInit, createNgModule } from '@angular/core';
+import { FormGroup, FormControl, FormControlName, Validators, FormBuilder } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { IUser } from '../models/ecommerce.model';
+import { ICart, IUser } from '../models/ecommerce.model';
 import { UserService } from '../user.service';
 
 @Component({
@@ -11,28 +11,45 @@ import { UserService } from '../user.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
+  currentUser!: IUser;
+  userCarts!: ICart; 
   // Login form
-  loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
-  })
+  loginForm = this.formbuilder.group({
+    username: ['kminchelle', [Validators.required]],
+    password: ['0lelplR', [Validators.required]]
+  });
 
-  constructor(private router: Router, private toastr: ToastrService, public userService: UserService) {}
-
-  ngOnInit() {
-    console.log(this.userService.isLoggedIn)
+  constructor(private formbuilder: FormBuilder, private router: Router, private toastr: ToastrService, public userService: UserService) {
+    this.currentUser = userService.getUserDetails();
+    
+    if (this.currentUser) {
+      this.router.navigate(['products'])
+    }
   }
+
+  ngOnInit() {}
 
 
   login() {
     this.userService.loginUser(this.loginForm.value).subscribe(
       success => {
-        console.log(success)
-        sessionStorage.setItem('user', JSON.stringify(success))
-        this.toastr.success('User login successful.</br>Welcome ' + success.firstName + '!', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true })
+        console.log(success);
+        sessionStorage.setItem('user', JSON.stringify(success));
+        this.toastr.success('User login successful.</br>Welcome ' + success.firstName + '!', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
         this.userService.isLoggedIn = true
-        this.userService.currentUser = success
-        this.router.navigate([''])
+        sessionStorage.setItem('isLoggedIn', "true");
+        this.userService.currentUser = success;
+        this.router.navigate(['products']);
+        
+        this.currentUser = success;
+
+        if (this.userService.getUserCartStatus(this.currentUser.id)) {
+          console.log('exists');
+        } else {
+          this.userService.createUserCart(this.currentUser.id);
+          // console.log('not exists new cart - ', localStorage.getItem(this.currentUser.id + '_cart'));
+          console.log('not exists new cart - ', sessionStorage.getItem(this.currentUser.id + '_cart'));
+        }
       }, error => {
         console.error(error)
         this.toastr.error('User login failed.')

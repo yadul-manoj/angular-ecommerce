@@ -1,25 +1,74 @@
-<div class="container-fluid p-5 bg-primary text-white">
-    <h1 *ngIf="userService.currentUser">Hello {{ userService.currentUser.firstName }}!</h1>
-    <p *ngIf="userService.currentUser"><em>Welcome to our E-Commerce website! Happy shopping!</em></p>
-    <h1 *ngIf="!userService.currentUser">Welcome to our E-Commerce website!</h1>
-    <p *ngIf="!userService.currentUser"><em>Login to order our products</em></p>
-</div>
+<div class="container-fluid bg-gradient" style="background-color: #ea526f;">
+    <div class="row">
+        
+        <div *ngIf="productCategories" class="col-md-2 d-md-block d-none" style="background-color: #363537; color: white;">
+            <!-- <h6 *ngFor="let category of productCategories">{{ category | titlecase }}</h6> -->
+            <button *ngFor="let category of productCategories" type="button" (click)="routeToCategory(category)" class="btn btn-outline-light btn-sm my-1" style="width: 100%;">{{ category | titlecase }}</button>
+        </div>
+        <div class="col-md-10 mx-auto">
+            <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel" style="font-family: Georgia;">
+                <div class="carousel-inner rounded-3">
+                    <div class="carousel-item active">
+                        <div class="d-flex justify-content-center align-items-center"
+                            style="height: 15vw; background-color: #f5f1ed;">
+                            <div class="col text-center">
+                                <!-- <h1 id="carousel-heading" class="fw-light" *ngIf="currentUser && isLoggedIn">Hello <strong>{{ currentUser.firstName
+                    }}</strong>!</h1>
+                    <h1 id="carousel-heading" class="fw-light" *ngIf="!currentUser && !isLoggedIn">Welcome to our E-Commerce website!</h1> -->
+                                <h1 id="carousel-heading" class="fw-light pt-3"><strong>Hello!</strong></h1>
+                                <p id="carousel-text"><em>Enjoy our large catalogoue of products!</em></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let product of productList.products" class="carousel-item">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 15vw">
+                            <img [src]="product.images[0]" class="d-block w-100" alt="">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
 
-<div *ngIf="productsList">
-    <div class="container">
-        <div *ngFor="let product of productsList.products" class="row p-5">
-            <div class="card flex-row"><img class="card-img-left example-card-img-responsive" [src]="product.thumbnail"
-                    style="max-width: 350px;">
-                <div class="card-body">
-                    <h1 class="card-title">{{ product.title }}</h1>
-                    <em>
-                        <p class="card-text">{{ product.description }}</p>
-                    </em>
-                    <br>
-                    <h5 class="card-text">Price: {{ product.price | currency:"USD" }}</h5>
-                    <em>
-                        <h5 class="card-text" style="color: red;">Discounted by: {{ product.discountPercentage }} %</h5>
-                    </em>
+            <br>
+
+            <div class="container mb-4" *ngIf="productList">
+                <div class="row justify-content-center align-items-center g-2">
+                    <div class="col" *ngFor="let product of productList.products">
+                        <div class="card mx-auto my-auto shadow p-1 mb-4 bg-body rounded"
+                            style="width: 16.5rem; height: 22rem;">
+                            <img class="card-img-top" [src]="product.thumbnail" alt="Card image cap"
+                                style="height: 10rem; cursor: pointer;" routerLink="/products/{{ product.id }}" (click)="sendProd(product)">
+                            <div class="card-body">
+                                <!-- <p class="card-title" style="font-size: medium;"><strong>{{ product.title }}</strong></p> -->
+                                <a routerLink="/products/{{ product.id }}" style="text-decoration: none;"
+                                    (click)="sendProd(product)">
+                                    <!-- <a href="" style="text-decoration: none;" (click)="sendProd(product)"> -->
+                                    <h5 class="card-title">{{ product.title }}</h5>
+                                </a>
+                                <p class="card-text">Price: {{ product.price | currency:"USD" }}</p>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a class="btn btn-warning" style="width: 100%;"
+                                                (click)="addToCart(product)">Add to Cart</a>
+                                        </div>
+                                        <!-- <div class="col">
+                                            <a class="btn btn-danger" style="width: max-content;">Buy now</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

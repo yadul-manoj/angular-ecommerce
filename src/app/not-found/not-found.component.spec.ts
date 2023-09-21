@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoverPageComponent } from './cover-page.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('CoverPageComponent', () => {
-  let component: CoverPageComponent;
-  let fixture: ComponentFixture<CoverPageComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CoverPageComponent]
+      declarations: [NotFoundComponent]
     });
-    fixture = TestBed.createComponent(CoverPageComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

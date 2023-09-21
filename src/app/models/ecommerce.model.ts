@@ -9,7 +9,7 @@ export interface IUser {
     token: string
 }
 
-export interface IProducts {
+export interface IProduct {
     id: number,
     title: string,
     description: string,
@@ -23,9 +23,47 @@ export interface IProducts {
     images: string[]
 }
 
-export interface IProductsList {
-    products: IProducts[],
+export interface IProductList {
+    products: IProduct[],
     total: number,
     skip: number,
     limit: number
+}
+
+// export interface ICart {
+//     carts: [
+//         {
+//             id: number,
+//             products: [
+//                 {
+//                     id: number,
+//                     title: string,
+//                     price: number,
+//                     quantity: number,
+//                     total: number,
+//                     discountPercentage: number,
+//                     discountedPrice: number
+//                 }
+//             ],
+//             total: number,
+//             discountedTotal: number,
+//             userId: number,
+//             totalProducts: number,
+//             totalQuantity: number
+//         }
+//     ],
+//     total: number,
+//     skip: number,
+//     limit: number
+// }
+
+export interface ICart {
+    userId: number,
+    products: [{
+        product: IProduct,
+        quantity: number,
+        total: number
+    }],
+    totalItems: number,
+    total: number
 }

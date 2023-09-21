@@ -10,18 +10,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HeaderComponent } from './header/header.component';
-import { CoverPageComponent } from './cover-page/cover-page.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductPageComponent } from './product-page/product-page.component';
+import { CartPageComponent } from './cart-page/cart-page.component';
+import { CategoryPageComponent } from './category-page/category-page.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     HeaderComponent,
-    CoverPageComponent,
     ProductListComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotFoundComponent,
+    ProductPageComponent,
+    CartPageComponent,
+    CategoryPageComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
