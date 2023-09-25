@@ -12,18 +12,18 @@ import { ProductService } from '../product.service';
 })
 export class HeaderComponent implements OnInit {
   productCategories!: string[];
-  currentUser!: IUser;
+  currentUser!: IUser | null;
 
   constructor(private prodService: ProductService, private toastr: ToastrService, private router: Router, public userService: UserService) {
-    this.currentUser = this.userService.getUserDetails();
-    // console.log('ok', this.currentUser);
-    if (this.currentUser) {
-      // this.router.navigate(['home']);
-    }
+    // this.currentUser = this.userService.getUserDetails();
   }
 
   ngOnInit() {
     this.getCategories();
+
+    this.userService.data$.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   logout() {

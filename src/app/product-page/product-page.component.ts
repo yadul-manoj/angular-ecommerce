@@ -25,7 +25,7 @@ export class ProductPageComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.productId = params['id'];
-      console.log(params);
+      // console.log(params);
     });
   }
 
@@ -65,7 +65,7 @@ export class ProductPageComponent implements OnInit {
   getProductFromProdList() {
     this.prodService.productSubject.subscribe(
       product => {
-        console.log('ok2', product);
+        // console.log('ok2', product);
         this.product = product;
       },
       error => {

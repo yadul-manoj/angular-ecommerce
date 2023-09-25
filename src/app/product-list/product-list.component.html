@@ -1,89 +1,142 @@
 <div class="container-fluid bg-gradient" style="background-color: #ea526f;">
     <div class="row">
-
         <div *ngIf="productCategories" class="col-md-2 d-md-block d-none"
             style="background-color: #363537; color: white;">
-            <!-- <h6 *ngFor="let category of productCategories">{{ category | titlecase }}</h6> -->
             <button *ngFor="let category of productCategories" type="button" (click)="routeToCategory(category)"
                 class="btn btn-outline-light btn-sm my-1" style="width: 100%; border-color: transparent; ">{{ category |
                 titlecase }}</button>
         </div>
         <div class="col-md-10 mx-auto">
-            <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel"
-                >
-                <div class="carousel-inner rounded-3">
-                    <div class="carousel-item active">
-                        <div class="d-flex justify-content-center align-items-center"
-                            style="height: 15vw; background-color: #f5f1ed;">
-                            <div class="col text-center">
-                                <!-- <h1 id="carousel-heading" class="fw-light" *ngIf="currentUser && isLoggedIn">Hello <strong>{{ currentUser.firstName
+            <div class="container">
+                <div class="row">
+                    <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-3">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-center align-items-center"
+                                    style="height: 15vw; background-color: #f5f1ed;">
+                                    <div class="col text-center">
+                                        <!-- <h1 id="carousel-heading" class="fw-light" *ngIf="currentUser && isLoggedIn">Hello <strong>{{ currentUser.firstName
                     }}</strong>!</h1>
                     <h1 id="carousel-heading" class="fw-light" *ngIf="!currentUser && !isLoggedIn">Welcome to our E-Commerce website!</h1> -->
-                                <h1 id="carousel-heading" class="fw-light pt-3"><strong>Hello!</strong></h1>
-                                <p id="carousel-text"><em>Enjoy our large catalogoue of products!</em></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngFor="let product of productList.products" class="carousel-item">
-                        <div class="d-flex justify-content-center align-items-center" style="height: 15vw">
-                            <img [src]="product.images[0]" class="d-block w-100" alt="">
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <br>
-
-            <div class="container mb-4" *ngIf="productList">
-                <div class="row justify-content-center align-items-center g-2">
-                    <div class="col" *ngFor="let product of productList.products">
-                        <div class="card mx-auto my-auto shadow p-1 mb-4 bg-body rounded"
-                            style="width: 16.5rem; height: 22rem;">
-                            <img class="card-img-top" [src]="product.thumbnail" alt="Card image cap"
-                                style="height: 10rem; cursor: pointer;" routerLink="/products/{{ product.id }}"
-                                (click)="sendProd(product)">
-                            <div class="card-body">
-                                <!-- <p class="card-title" style="font-size: medium;"><strong>{{ product.title }}</strong></p> -->
-                                <a routerLink="/products/{{ product.id }}" style="text-decoration: none;"
-                                    (click)="sendProd(product)">
-                                    <!-- <a href="" style="text-decoration: none;" (click)="sendProd(product)"> -->
-                                    <h6 class="card-title"><strong>{{ product.title }}</strong></h6>
-                                </a>
-                                <p class="card-text">Price: {{ product.price | currency:"USD" }}</p>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <i class="fa-solid fa-star"
-                                            [style.visibility]="product.rating >= 1 ? 'visible' : 'hidden'"></i>
-                                        <i class="fa-solid fa-star"
-                                            [style.visibility]="product.rating >= 2 ? 'visible' : 'hidden'"></i>
-                                        <i class="fa-solid fa-star"
-                                            [style.visibility]="product.rating >= 3 ? 'visible' : 'hidden'"></i>
-                                        <i class="fa-solid fa-star"
-                                            [style.visibility]="product.rating >= 4 ? 'visible' : 'hidden'"></i>
-                                        <i class="fa-solid fa-star"
-                                            [style.visibility]="product.rating == 5 ? 'visible' : 'hidden'"></i>
-                                        ({{ product.rating }})
+                                        <h1 id="carousel-heading" class="fw-light pt-3"><strong>Hello!</strong></h1>
+                                        <p id="carousel-text"><em>Enjoy our large catalogoue of products!</em></p>
                                     </div>
                                 </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a class="btn btn-warning" style="width: 100%;"
-                                                (click)="addToCart(product)">Add to Cart</a>
-                                        </div>
-                                        <!-- <div class="col">
+                            </div>
+                            <div *ngFor="let product of productList.products" class="carousel-item">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 15vw">
+                                    <img [src]="product.images[0]" class="d-block w-100" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <!-- dropdown for desktop -->
+                    <div class="col-sm-6">
+                        <div class="btn-group d-none d-md-flex" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <label for="btn-group">Sort by:&nbsp;<i class="fas fa-sort"></i>&nbsp;&nbsp;</label>
+                            <!-- <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                checked>
+                            <label class="btn btn-dark btn-sm" for="btnradio1">Popularity</label> -->
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                                [routerLink]="'.'" [queryParams]="{ sort: 'priceasc' }" [checked]="sortBy == 'priceasc'">
+                            <label class="btn btn-dark btn-sm" for="btnradio2">Price - Low to High</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                                [routerLink]="'.'" [queryParams]="{ sort: 'pricedesc' }" [checked]="sortBy == 'pricedesc'">
+                            <label class="btn btn-dark btn-sm" for="btnradio3">Price - High to Low</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
+                                [routerLink]="'.'" [queryParams]="{ sort: 'rating' }" [checked]="sortBy == 'rating'">
+                            <label class="btn btn-dark btn-sm" for="btnradio4">Rating</label>
+                        </div>
+
+                        <!-- dropdown for mobile -->
+                        <!-- <div class="dropdown d-md-none">
+                            <button type="button" class="btn btn-dark btn-sm dropdown-toggle " data-bs-toggle="dropdown"
+                                id="5b4f95e9a64b5" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i> Sort by
+                            </button>
+                            <div class="dropdown-menu w-100" aria-labelledby="5b4f95e9a64b5">
+                                <a href='#' class="dropdown-item">Popularity</a>
+                                <a href='#' class="dropdown-item">Price - Low to High</a>
+                                <a href='#' class="dropdown-item">Price - High to Low</a>
+                                <a href='#' class="dropdown-item">Rating</a>
+                            </div>
+                        </div> -->
+
+                        <div class="dropdown d-md-none">
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                Sort by
+                            </button>
+                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" (click)="sortByPriceAsc()">Price - Low to High</a></li>
+                                <li><a class="dropdown-item" (click)="sortByPriceDesc()">Price - High to Low</a></li>
+                                <li><a class="dropdown-item" (click)="sortByRatingDesc()">Rating</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="container mb-4" *ngIf="productList">
+                            <div class="row justify-content-center align-items-center g-2">
+                                <div class="col" *ngFor="let product of productList.products">
+                                    <div class="card mx-auto my-auto shadow p-1 mb-4 bg-body rounded"
+                                        style="width: 16.5rem; height: 22rem;">
+                                        <img class="card-img-top" [src]="product.thumbnail" alt="Card image cap"
+                                            style="height: 10rem; cursor: pointer;"
+                                            routerLink="/products/{{ product.id }}" (click)="sendProd(product)">
+                                        <div class="card-body">
+                                            <!-- <p class="card-title" style="font-size: medium;"><strong>{{ product.title }}</strong></p> -->
+                                            <a routerLink="/products/{{ product.id }}" style="text-decoration: none;"
+                                                (click)="sendProd(product)">
+                                                <!-- <a href="" style="text-decoration: none;" (click)="sendProd(product)"> -->
+                                                <h6 class="card-title"><strong>{{ product.title }}</strong></h6>
+                                            </a>
+                                            <p class="card-text">Price: {{ product.price | currency:"USD" }}</p>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <i class="fa-solid fa-star"
+                                                        [style.visibility]="product.rating >= 1 ? 'visible' : 'hidden'"></i>
+                                                    <i class="fa-solid fa-star"
+                                                        [style.visibility]="product.rating >= 2 ? 'visible' : 'hidden'"></i>
+                                                    <i class="fa-solid fa-star"
+                                                        [style.visibility]="product.rating >= 3 ? 'visible' : 'hidden'"></i>
+                                                    <i class="fa-solid fa-star"
+                                                        [style.visibility]="product.rating >= 4 ? 'visible' : 'hidden'"></i>
+                                                    <i class="fa-solid fa-star"
+                                                        [style.visibility]="product.rating == 5 ? 'visible' : 'hidden'"></i>
+                                                    ({{ product.rating }})
+                                                </div>
+                                            </div>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a class="btn btn-warning" style="width: 100%;"
+                                                            (click)="addToCart(product)">Add to Cart</a>
+                                                    </div>
+                                                    <!-- <div class="col">
                                             <a class="btn btn-danger" style="width: max-content;">Buy now</a>
                                         </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -93,4 +146,3 @@
             </div>
         </div>
     </div>
-</div>

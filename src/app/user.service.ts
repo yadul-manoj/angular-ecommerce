@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ICart, IProduct, IUser } from './models/ecommerce.model';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,13 @@ export class UserService {
   baseUrl = environment.baseUrl;
   isLoggedIn: boolean = false;
   currentUser: IUser | undefined;
+
+  private dataSubject = new BehaviorSubject<IUser | null>(null);
+  data$: Observable<IUser | null> = this.dataSubject.asObservable();
+
+  updateData(user: IUser): void {
+    this.dataSubject.next(user);
+  }
 
   constructor(private router: Router, private http: HttpClient, private toastr: ToastrService) { }
 
