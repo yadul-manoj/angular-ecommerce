@@ -138,6 +138,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" *ngIf="noProductsFound">
+                        <div class="col text-center" style="color: white;">
+                           <h1>Sorry, no results found!</h1> 
+                           <p>Please check the spelling or try searching for something else.</p>
+                           <button routerLink="" type="button" class="btn btn-primary btn-lg">Redirect to Home</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

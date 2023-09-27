@@ -53,7 +53,7 @@ export class ProductListComponent {
       // setTimeout(() => {
       if (this.searchString != undefined && this.productList) {
         this.productList = structuredClone(this.productListCopy);
-        // this.noProductsFound = false;
+        this.noProductsFound = false;
         this.searchProducts();
       }
       // }, 1000);
@@ -82,7 +82,7 @@ export class ProductListComponent {
           this.searchProducts();
         else {
           this.productList = structuredClone(this.productListCopy);
-          // this.noProductsFound = false;
+          this.noProductsFound = false;
         }
       },
       error => {
@@ -176,7 +176,6 @@ export class ProductListComponent {
 
     if (products.length == 0) {
        this.noProductsFound = true;
-       console.log(products.length)
     }
      
     this.productList.products = products;
