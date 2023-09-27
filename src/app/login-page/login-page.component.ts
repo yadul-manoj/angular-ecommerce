@@ -27,13 +27,15 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.updateData(this.userService.getUserDetails());
+   
+  }
 
 
   login() {
     this.userService.loginUser(this.loginForm.value).subscribe(
       success => {
-        // console.log(success);
         sessionStorage.setItem('user', JSON.stringify(success));
         this.toastr.success('User login successful.</br>Welcome ' + success.firstName + '!', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
         this.userService.isLoggedIn = true
@@ -47,10 +49,7 @@ export class LoginPageComponent implements OnInit {
           // console.log('exists');
         } else {
           this.userService.createUserCart(this.currentUser.id);
-          // console.log('not exists new cart - ', localStorage.getItem(this.currentUser.id + '_cart'));
-          // console.log('not exists new cart - ', sessionStorage.getItem(this.currentUser.id + '_cart'));
         }
-
 
         this.userService.updateData(success);
       }, error => {

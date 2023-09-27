@@ -8,10 +8,21 @@
         </svg>
         E-Commerce Website
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+
+    <form *ngIf="router.url != '/'" [formGroup]="searchForm" id="navbarform" class="d-flex" role="search">
+        <input #searchField class="form-control ms-2 me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}">
+        <button class="btn btn-success px-1" type="submit" (click)="searchNavigation()">Search</button>
+        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </form>
+
+
+
+
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
@@ -20,7 +31,7 @@
                     aria-expanded="false">
                     Categories
                 </a>
-                <ul *ngIf="productCategories" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul *ngIf="productCategories" class="dropdown-menu me-2" aria-labelledby="navbarDropdown">
                     <li *ngFor="let category of productCategories">
                         <a class="dropdown-item" href="#" [routerLink]="['products/category/', category]"
                             style="color: black;">{{ category | titlecase }}</a>
@@ -35,8 +46,7 @@
             <li class="nav-item" style="padding-left: 10px;">
                 <!-- <span *ngIf="userService.getUserDetails()" class="badge rounded-pill bg-danger d-md-inline" style="float:right;margin-bottom:-10px;">1</span> -->
 
-                <a *ngIf="currentUser" class="nav-item nav-link" routerLink="cart"
-                    style="cursor: pointer;">
+                <a *ngIf="currentUser" class="nav-item nav-link" routerLink="cart" style="cursor: pointer;">
                     Cart
                     <i class="fa-solid fa-cart-shopping px-1"></i>
                     <span *ngIf="userService.getUserDetails()" class="badge rounded-pill bg-danger">{{
@@ -48,7 +58,7 @@
                     aria-expanded="false">
                     Welcome {{ userService.getUserDetails().firstName }}!
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu me-2" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" href="#" routerLink="profile" style="color: black;">View Profile</a>
                     </li>

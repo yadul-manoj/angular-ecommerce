@@ -17,6 +17,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SearchPipePipe } from './pipes/search-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ProductPageComponent,
     CartPageComponent,
     CategoryPageComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchPipePipe
   ],
   imports: [
     BrowserModule,

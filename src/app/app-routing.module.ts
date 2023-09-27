@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: 'cart', component: CartPageComponent },
   // { path: 'category/:id', component: CategoryPageComponent },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '404' }
+  // { path: '404', component: NotFoundComponent },
+  // { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
