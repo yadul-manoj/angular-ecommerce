@@ -12,7 +12,6 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  productList!: IProductList;
   productCategories!: string[];
   currentUser!: IUser | null;
   searchString: string = '';
@@ -34,15 +33,6 @@ export class HeaderComponent implements OnInit {
     this.userService.data$.subscribe(user => {
       this.currentUser = user;
     });
-
-    this.prodService.getProducts().subscribe(
-      success => {
-        this.productList = success;
-      },
-      error => {
-        console.error(error);
-      }
-    )
 
     this.route.queryParams.subscribe(params => {
       this.searchString = params['search'];

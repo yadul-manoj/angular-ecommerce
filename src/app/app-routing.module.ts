@@ -7,9 +7,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/category/:id', component: ProductListComponent },
   { path: 'products/:id', component: ProductPageComponent },

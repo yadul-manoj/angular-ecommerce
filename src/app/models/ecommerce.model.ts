@@ -30,33 +30,6 @@ export interface IProductList {
     limit: number
 }
 
-// export interface ICart {
-//     carts: [
-//         {
-//             id: number,
-//             products: [
-//                 {
-//                     id: number,
-//                     title: string,
-//                     price: number,
-//                     quantity: number,
-//                     total: number,
-//                     discountPercentage: number,
-//                     discountedPrice: number
-//                 }
-//             ],
-//             total: number,
-//             discountedTotal: number,
-//             userId: number,
-//             totalProducts: number,
-//             totalQuantity: number
-//         }
-//     ],
-//     total: number,
-//     skip: number,
-//     limit: number
-// }
-
 export interface ICart {
     userId: number,
     products: [{
@@ -66,4 +39,9 @@ export interface ICart {
     }],
     totalItems: number,
     total: number
+}
+
+export interface ICategoryProducts {
+    category: string,
+    productsList: IProductList | null
 }

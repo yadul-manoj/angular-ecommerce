@@ -2,6 +2,8 @@
     <div class="row">
         <div *ngIf="productCategories" class="col-md-2 d-md-block d-none"
             style="background-color: #363537; color: white;">
+            <button type="button" class="btn btn-outline-light btn-sm my-1"
+                style="width: 100%; border-color: transparent; " routerLink="/products">All products</button>
             <button *ngFor="let category of productCategories" type="button" (click)="routeToCategory(category)"
                 class="btn btn-outline-light btn-sm my-1" style="width: 100%; border-color: transparent; ">{{ category |
                 titlecase }}</button>
@@ -43,7 +45,7 @@
                     </div>
                 </div>
                 <hr>
-                
+
                 <div class="row">
                     <!-- dropdown for desktop -->
                     <div class="col-sm-6">
@@ -103,7 +105,9 @@
                                             <a routerLink="/products/{{ product.id }}" style="text-decoration: none;"
                                                 (click)="sendProd(product)">
                                                 <!-- <a href="" style="text-decoration: none;" (click)="sendProd(product)"> -->
-                                                <h6 class="card-title"><strong>{{ product.title }}</strong></h6>
+                                                <h6 class="card-title"
+                                                    style="width: 12rem; white-space: pre; overflow: hidden; text-overflow: ellipsis;">
+                                                    <strong>{{ product.title }}</strong></h6>
                                             </a>
                                             <p class="card-text">Price: {{ product.price | currency:"USD" }}</p>
                                             <div class="row mb-3">
@@ -140,12 +144,13 @@
                     </div>
                     <div class="row" *ngIf="noProductsFound">
                         <div class="col text-center" style="color: white;">
-                           <h1>Sorry, no results found!</h1> 
-                           <p>Please check the spelling or try searching for something else.</p>
-                           <button routerLink="" type="button" class="btn btn-primary btn-lg">Redirect to Home</button>
+                            <h1>Sorry, no results found!</h1>
+                            <p>Please check the spelling or try searching for something else.</p>
+                            <button routerLink="" type="button" class="btn btn-primary btn-lg">Redirect to Home</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

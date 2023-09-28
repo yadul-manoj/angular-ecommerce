@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
     this.currentUser = userService.getUserDetails();
     
     if (this.currentUser) {
-      this.router.navigate(['products'])
+      this.router.navigate(['home'])
     }
   }
 
@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit {
         this.userService.isLoggedIn = true
         sessionStorage.setItem('isLoggedIn', "true");
         this.userService.currentUser = success;
-        this.router.navigate(['products']);
+        this.router.navigate(['home']);
         
         this.currentUser = success;
 
