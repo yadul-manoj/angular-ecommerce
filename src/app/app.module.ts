@@ -3,22 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HeaderComponent } from './header/header.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ProductPageComponent } from './product-page/product-page.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
-import { CategoryPageComponent } from './category-page/category-page.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LayoutComponent } from './layout/layout.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +33,11 @@ import { HomePageComponent } from './home-page/home-page.component';
     NotFoundComponent,
     ProductPageComponent,
     CartPageComponent,
-    CategoryPageComponent,
     SidebarComponent,
     SearchPipePipe,
-    HomePageComponent
+    HomePageComponent,
+    LayoutComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

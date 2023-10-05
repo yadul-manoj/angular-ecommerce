@@ -1,0 +1,78 @@
+<div class="container-fluid pb-3" style="background-color: #212529; background-size: cover; height: 100%;">
+    <div class="container">
+        <div class="row heading-row">
+            <div class="col">
+                <h4 class="wishlist-heading">{{ currentUser.firstName }}'s Wishlist <span class="badge bg-warning"
+                        style="color: black; font-size: 10px; vertical-align: middle;">{{ wishlist.totalItems }}
+                        items</span></h4>
+                <hr class="rule">
+            </div>
+        </div>
+
+        <div *ngIf="wishlist.totalItems < 1" class="row wishlist-empty text-center" style="height: 100vh;">
+            <div class="col">
+                <h1>Your wishlist is empty!</h1>
+                <p class="empty-wishlist-paragraph">Add items to it now.</p>
+                <button routerLink="" type="button" class="btn btn-primary btn-lg">Shop now</button>
+            </div>
+        </div>
+
+        <div class="row wishlist-row" style="height: 100vh;">
+            <div class="col">
+                <div class="row card-row mx-auto pb-2" *ngFor="let product of wishlist.products">
+                    <div class="col">
+                        <div class="card product-card">
+                            <div class="card-body product-card-body">
+                                <div class="row">
+                                    <div class="col-md-3 align-self-center">
+                                        <img class="product-image img-fluid py-2" [src]="product.thumbnail">
+                                    </div>
+                                    <div class="col-md-7 product-details">
+                                        <h5 class="card-title"><strong>{{ product.title }}</strong></h5>
+                                        <p class="card-text">by {{ product.brand }}</p>
+                                        <div class="row pb-2">
+                                            <div class="col">
+                                                <i class="fa-solid fa-star" style="color: #ffff80;"
+                                                    [style.visibility]="product.rating >= 1 ? 'visible' : 'hidden'"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffff80;"
+                                                    [style.visibility]="product.rating >= 2 ? 'visible' : 'hidden'"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffff80;"
+                                                    [style.visibility]="product.rating >= 3 ? 'visible' : 'hidden'"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffff80;"
+                                                    [style.visibility]="product.rating >= 4 ? 'visible' : 'hidden'"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffff80;"
+                                                    [style.visibility]="product.rating == 5 ? 'visible' : 'hidden'"></i>
+                                                ({{ product.rating }})
+                                            </div>
+                                        </div>
+                                        <p>
+                                            {{product.price | currency: 'USD'}}
+                                            <span class="badge bg-danger">{{ product.discountPercentage }}% off</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 product-actions">
+                                        <div class="row" style="margin-bottom: 5px;">
+                                            <div class="col d-grid">
+                                                <button type="button" class="btn btn-dark btn-sm"
+                                                    (click)="addToCart(product)">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col d-grid">
+                                                <button type="button" class="btn btn-dark btn-sm"
+                                                    (click)="deleteFromWishlist(product.id)"><i
+                                                        class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

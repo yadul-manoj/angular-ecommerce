@@ -1,0 +1,108 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="container bg-gradient" style="background-color: #56667a;">
+    <div class="row">
+        <div class="col mx-auto">
+            <div class="container">
+                <div class="row">
+                    <div *ngIf="productList" id="carouselExampleControls" class="carousel slide mt-2"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-3">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-center align-items-center"
+                                    style="height: 15vw; background-color: #f5f1ed;">
+                                    <div class="col text-center">
+                                        <!-- <h1 id="carousel-heading" class="fw-light" *ngIf="currentUser && isLoggedIn">Hello <strong>{{ currentUser.firstName
+                    }}</strong>!</h1>
+                    <h1 id="carousel-heading" class="fw-light" *ngIf="!currentUser && !isLoggedIn">Welcome to our E-Commerce website!</h1> -->
+                                        <h1 id="carousel-heading" class="fw-light pt-3"><strong>Hello!</strong></h1>
+                                        <p id="carousel-text"><em>Enjoy our large catalogoue of products!</em></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngFor="let product of productList.products" class="carousel-item">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 15vw">
+                                    <img [src]="product.images[0]" class="d-block w-100" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row pb-2">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <a routerLink="/products"
+                                    style="text-decoration: none; cursor: pointer; color: inherit;">
+                                    <h4><strong>All products</strong></h4>
+                                </a>
+                                <div class="container">
+                                    <div class="row flex-row flex-nowrap overflow-auto" *ngIf="productList">
+                                        <div class="col mb-2" *ngFor="let product of productList.products">
+                                            <div class="card inner-card text-bg-dark card-block"
+                                                style="width: 13rem; height: fit-content;">
+                                                <img [src]="product.thumbnail" class="card-img-top"
+                                                    style="height: 8rem;">
+                                                <div class="card-body">
+                                                    <a routerLink="/products/{{ product.id }}"
+                                                        style="text-decoration: none; color: inherit;">
+                                                        <h6 class="card-title"
+                                                            style="width: 11rem; white-space: pre; overflow: hidden; text-overflow: ellipsis;">
+                                                            <strong>{{ product.title }}</strong>
+                                                        </h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-2" *ngFor="let category of categoryProducts">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <a (click)="routeToCategory(category.category)" style="cursor: pointer;">
+                                    <h4><strong>Best of {{ category.category }}</strong></h4>
+                                </a>
+                                <div class="container">
+                                    <div class="row flex-row flex-nowrap overflow-auto" *ngIf="category.productList">
+                                        <div class="col mb-2" *ngFor="let product of category.productList.products">
+                                            <div class="card inner-card text-bg-dark card-block"
+                                                style="width: 13rem; height: fit-content;">
+                                                <img [src]="product.thumbnail" class="card-img-top"
+                                                    style="height: 8rem;">
+                                                <div class="card-body">
+                                                    <a routerLink="/products/{{ product.id }}"
+                                                        style="text-decoration: none; color: inherit;">
+                                                        <h6 class="card-title"
+                                                            style="width: 11rem; white-space: pre; overflow: hidden; text-overflow: ellipsis;">
+                                                            <strong>{{ product.title }}</strong>
+                                                        </h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col navbar-column">
+            <app-header></app-header>
+        </div>
+    </div>
+    <div class="row" *ngIf="atValidSidebarPage;">
+        <div class="col-md-2 sidebar-column">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-10 main-column">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="row" *ngIf="!atValidSidebarPage;">
+        <div class="col-md-12 main-column">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

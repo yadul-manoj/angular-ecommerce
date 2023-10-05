@@ -41,7 +41,13 @@ export interface ICart {
     total: number
 }
 
+export interface IWishlist {
+    userId: number,
+    products: IProduct[],
+    totalItems: number,
+}
+
 export interface ICategoryProducts {
     category: string,
-    productsList: IProductList | null
+    productList: IProductList | null
 }

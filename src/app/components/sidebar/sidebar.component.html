@@ -1,0 +1,13 @@
+<div class="container-fluid" style="background-color: #363537; background-size: cover; height: 100%;">
+    <div class="row">
+        <div *ngIf="productCategories" class="col d-md-block d-none"
+            style="background-color: #363537; color: white;">
+            <button type="button" class="btn btn-outline-light btn-sm my-1"
+                style="width: 100%; border-color: transparent; " [class.active]="productCategory == undefined" (click)="routeToProducts()">All products</button>
+            <button *ngFor="let category of productCategories" type="button" [class.active]="productCategory == category" (click)="routeToCategory(category)"
+                class="btn btn-outline-light btn-sm my-1" style="width: 100%; border-color: transparent; ">
+                {{ category | titlecase }}
+            </button>
+        </div>
+    </div>
+</div>

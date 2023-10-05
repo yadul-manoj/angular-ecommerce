@@ -1,0 +1,13 @@
+.navbar a {
+    color: white;
+}
+
+.dropdown-item:active {
+    text-shadow: black;
+}
+
+@media (max-width: 637px) {
+    #navbarform {
+        width: 100vw;
+    }
+}
