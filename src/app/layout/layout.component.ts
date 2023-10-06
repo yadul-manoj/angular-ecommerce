@@ -24,7 +24,7 @@ export class LayoutComponent implements OnInit {
   }
 
   checkValidSidebarPage(curUrlTree: string[]) {
-    console.log(curUrlTree);
+    // console.log(curUrlTree);
  
     if (curUrlTree[1] == 'home' ||
       (curUrlTree[1] == 'products' && curUrlTree[2] == undefined) ||

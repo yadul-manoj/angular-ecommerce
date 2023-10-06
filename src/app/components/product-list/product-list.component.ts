@@ -56,6 +56,9 @@ export class ProductListComponent {
       this.searchString = params['search'];
       // console.log('qp', this.sortBy, this.searchString);
 
+      if (this.sortBy == undefined && this.searchString == undefined)
+        this.getProd();
+
       // Added extra if for this.productList as products[] become undefined when searchProducts() is called. Can fix with delay or call again in getProd()
       // setTimeout(() => {
       if (this.searchString != undefined && this.productList) {

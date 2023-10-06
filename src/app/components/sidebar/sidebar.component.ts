@@ -9,6 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  allProductsFlag!: boolean;
   productCategory: string = '';
   productCategories!: string[];
 
@@ -19,17 +20,18 @@ export class SidebarComponent implements OnInit {
 
     // Subscribing for params using activated route doesnt work because router outlet is outside the component (but works for queryparams)
     this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        let curUrlTree = this.router.parseUrl(this.router.url).toString().split(/[/?]+/);
+      // if (val instanceof NavigationEnd) {
+        let curUrlTree = this.router.parseUrl(this.router.url).toString().split(/[/?=]+/);
 
         // console.info(curUrlTree);
 
-        if (curUrlTree[1] != 'products')
-          this.productCategory = '';
+        if (curUrlTree.find((page) => { return page == 'search' }) || curUrlTree[2] == 'category' || curUrlTree[1] == 'home')
+          this.allProductsFlag = false;
         else
-          // Category is always at the third index 
-          this.productCategory = curUrlTree[3];
-      }
+          this.allProductsFlag = true;
+
+        this.productCategory = curUrlTree[3];
+      // }
     });
 
   }
