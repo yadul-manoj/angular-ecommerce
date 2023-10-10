@@ -28,6 +28,13 @@ export class UserService {
     return this.http.post<IUser>(this.baseUrl + 'auth/login', user);
   }
 
+  isUserLoggedIn(): boolean {
+    if (sessionStorage.getItem('isLoggedIn'))
+      return true;
+    else 
+      return false;
+  }
+
   logoutUser() {
     this.isLoggedIn = false;
     this.currentUser = undefined;
@@ -77,7 +84,7 @@ export class UserService {
 
     // Item exists
     if (index != -1) {
-      console.log('existing item');
+      // console.log('existing item');
       // Set maximum purchasing limit
       if (currentCart.products[index].quantity < 2) {
         currentCart.products[index].quantity += 1;
@@ -89,7 +96,7 @@ export class UserService {
         this.toastr.error('Cannot add item to cart.<br>Maximum quantity is two.', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
       }
     } else {
-      console.log('new item');
+      // console.log('new item');
       currentCart.products.push({ product: product, quantity: 1, total: product.price });
       currentCart.total += product.price;
       currentCart.totalItems += 1;

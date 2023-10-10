@@ -20,7 +20,7 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     if (this.currentUser) {
       this.wishlist = this.userService.getUserWishlist(this.currentUser.id);
-      console.log(this.wishlist);
+      // console.log(this.wishlist);
     }
   }
 

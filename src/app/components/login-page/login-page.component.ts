@@ -1,9 +1,10 @@
-import { Component, OnInit, createNgModule } from '@angular/core';
+import { Component, NgModule, OnInit, createNgModule } from '@angular/core';
 import { FormGroup, FormControl, FormControlName, Validators, FormBuilder } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ICart, IUser } from '../../models/ecommerce.model';
 import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-login-page',
@@ -38,7 +39,7 @@ export class LoginPageComponent implements OnInit {
       success => {
         sessionStorage.setItem('user', JSON.stringify(success));
         this.toastr.success('User login successful.</br>Welcome ' + success.firstName + '!', '', { closeButton: true, timeOut: 4000, progressBar: true, enableHtml: true });
-        this.userService.isLoggedIn = true
+        this.userService.isLoggedIn = true;
         sessionStorage.setItem('isLoggedIn', "true");
         this.userService.currentUser = success;
         this.router.navigate(['home']);

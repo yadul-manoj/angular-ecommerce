@@ -1,5 +1,5 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-<div class="container-fluid bg-gradient" style="background-color: #ea526f;">
+<div class="container-fluid bg-gradient" style="background-color: #ea526f; background-size: cover; height: 100%;">
     <div class="row">
         <div class="col">
             <div class="container">
@@ -78,7 +78,8 @@
                         </div>
                     </div>
 
-                    <div class="row pt-3" *ngIf="productList.products.length > 0">
+                    <div class="row pt-3" [ngClass]="{ 'justify-content-center': productList.products.length % 4 == 0 }" *ngIf="productList">
+                    <!-- <div class="row pt-3 justify-content-center" *ngIf="productList"> -->
                         <div class="col-sm-3" *ngFor="let product of productList.products" style="width: fit-content;">
                             <div class="card shadow p-1 mb-4 bg-body rounded" style="width: 16.5rem; height: 22rem;">
                                 <img class="card-img-top" [src]="product.thumbnail" alt="Card image cap"
